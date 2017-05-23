@@ -154,8 +154,7 @@ func TestAllBitSeqs(t *testing.T) {
 	for i := range testData {
 		testSlice := allBitSeqs(testData[i])
 		corrSlice := corrData[i]
-		match, bitSeq := multiSliceMatch(testSlice, corrSlice)
-		if match {
+		if match, bitSeq := multiSliceMatch(testSlice, corrSlice); match {
 			fmt.Printf("Success. 'allBitSeqs' returned the correct bit sequences for n = %v\n", testData[i])
 		} else if !match && bitSeq == nil {
 			t.Error("'allBitSeqs' did not return the correct number of bit sequences. Expected:", len(corrSlice), "Got:", len(testSlice))
