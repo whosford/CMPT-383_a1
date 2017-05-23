@@ -66,9 +66,8 @@ func lessThanTime24(a Time24, b Time24) bool {
 		} else if a.minute == b.minute {
 			if a.second < b.second {
 				return true
-			} else {
-				return false
 			}
+			return false
 		} else {
 			return true
 		}
@@ -78,17 +77,17 @@ func lessThanTime24(a Time24, b Time24) bool {
 }
 
 func (t Time24) String() string {
-	var prefix_hr, prefix_min, prefix_sec string
+	var prefixHr, prefixMin, prefixSec string
 	if t.hour < 10 {
-		prefix_hr = "0"
+		prefixHr = "0"
 	}
 	if t.minute < 10 {
-		prefix_min = "0"
+		prefixMin = "0"
 	}
 	if t.second < 10 {
-		prefix_sec = "0"
+		prefixSec = "0"
 	}
-	return prefix_hr + strconv.Itoa(int(t.hour)) + ":" + prefix_min + strconv.Itoa(int(t.minute)) + ":" + prefix_sec + strconv.Itoa(int(t.second))
+	return prefixHr + strconv.Itoa(int(t.hour)) + ":" + prefixMin + strconv.Itoa(int(t.minute)) + ":" + prefixSec + strconv.Itoa(int(t.second))
 }
 
 func (t Time24) validTime24() bool {
@@ -99,12 +98,12 @@ func minTime24(times []Time24) (Time24, error) {
 	minTime := Time24{hour: 23, minute: 59, second: 59}
 	if len(times) == 0 {
 		minTime := Time24{hour: 0, minute: 0, second: 0}
-		return minTime, errors.New("Error: input must not be empty.")
+		return minTime, errors.New("input must not be empty")
 	}
 	for i := 0; i < len(times); i++ {
 		if !times[i].validTime24() {
 			minTime := Time24{hour: 0, minute: 0, second: 0}
-			return minTime, fmt.Errorf("Error: time '%s' at position '%v' is not valid.", times[i].String(), i+1)
+			return minTime, fmt.Errorf("time '%s' at position '%v' is not valid", times[i].String(), i+1)
 		}
 	}
 	for i := 0; i < len(times); i++ {
@@ -149,13 +148,12 @@ func linearSearch(x interface{}, lst interface{}) int {
 func binarySliceSize(n int) int {
 	if n <= 0 {
 		return 0
-	} else {
-		size := 2
-		for i := 1; i < n; i++ {
-			size *= 2
-		}
-		return size
 	}
+	size := 2
+	for i := 1; i < n; i++ {
+		size *= 2
+	}
+	return size
 }
 
 func binarySequence(n int, bStr string) []int {
